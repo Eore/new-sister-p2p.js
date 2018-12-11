@@ -47,16 +47,17 @@ voteButton.onclick = () => {
 
 connectButton.onclick = () => {
   uid = inputUid.value;
-  inputWrapper.hidden = true;
-  mainWrapper.style.visibility = "visible";
-  title.innerHTML = uid;
 
   socket
     .connect(
-      "localhost:4444",
+      window.location.hostname + ":4444",
       uid
     )
     .then(() => {
+      inputWrapper.hidden = true;
+      mainWrapper.style.visibility = "visible";
+      title.innerHTML = uid;
+
       console.log("Local ID :", uid);
       socket.ws.onmessage = ({ data }) => {
         let { to, from, type, message, at } = JSON.parse(data);
@@ -112,6 +113,14 @@ let showData = (listPeer, id) => {
     }
   });
 
+  listPeer[id].on("close", () => {
+    showConnected(listPeer, id);
+  });
+
+  showConnected(listPeer, id);
+};
+
+let showConnected = (listPeer, id) => {
   listConnected.innerHTML = "";
 
   Object.keys(listPeer).forEach(el => {
