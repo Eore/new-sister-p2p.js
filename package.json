@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "peer": "^0.2.10",
-    "simple-peer": "^9.1.2"
+    "simple-peer": "^9.1.2",
+    "ws": "^6.1.2"
   }
 }
