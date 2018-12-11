@@ -61,6 +61,11 @@ connectButton.onclick = () => {
       console.log("Local ID :", uid);
       socket.ws.onmessage = ({ data }) => {
         let { to, from, type, message, at } = JSON.parse(data);
+
+        window.onbeforeunload = () => {
+          socket.sendMessage(from, "peer-disconnect", "");
+        };
+
         switch (type) {
           case "request-list":
             listNodes.innerHTML = "<option disabled>none</option>";
@@ -88,6 +93,13 @@ connectButton.onclick = () => {
             showData(peer.listPeer, from);
             break;
 
+          case "peer-disconnect":
+            delete peer.listPeer[from];
+            showConnected(peer.listPeer, id);
+            listNodes.removeAttribute("disabled");
+            joinButton.removeAttribute("disabled");
+            break;
+
           default:
             console.log("incoming :", message);
             break;
@@ -111,10 +123,6 @@ let showData = (listPeer, id) => {
     if (type === "put") {
       database.addTo("data", data);
     }
-  });
-
-  listPeer[id].on("close", () => {
-    showConnected(listPeer, id);
   });
 
   showConnected(listPeer, id);
