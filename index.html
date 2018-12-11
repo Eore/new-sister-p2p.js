@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #main-wrapper {
+        display: flex;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="connect-wrapper">
+      <input id="input-uid" type="text" placeholder="insert unique id" />
+      <input id="connect-button" type="submit" value="Connect" />
+    </div>
+    <div id="main-wrapper">
+      <div>
+        <div id="list-nodes-wrapper">
+          <div><h3>List Nodes</h3></div>
+          <div>
+            <select id="list-nodes"></select>
+            <input id="join-button" type="submit" value="Join" />
+          </div>
+        </div>
+        <div>
+          <div><h3>Connected to me</h3></div>
+          <div><ul id="list-connected"></ul></div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <select id="list-vote"></select>
+          <input id="vote-button" type="submit" value="Vote" />
+        </div>
+        <div></div>
+      </div>
+    </div>
+    <script src="/src/js/main.js"></script>
+  </body>
+</html>

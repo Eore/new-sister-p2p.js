@@ -1,0 +1,10 @@
+{
+  "name": "sister-p2p-new.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "peer": "^0.2.10",
+    "simple-peer": "^9.1.2"
+  }
+}
